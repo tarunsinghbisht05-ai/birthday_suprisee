@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🥳</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fce4ec; /* Light pink background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Sparkles Background */
+        #sparkle-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white, 0 0 20px pink;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 50px;
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px #ff0;
+            animation: glow 2s infinite alternate;
+            margin-bottom: 10px;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff; }
+            to { text-shadow: 0 0 30px #ff0; }
+        }
+
+        /* --- INTRO VIDEO (The Small One) --- */
+        .intro-vid {
+            width: 180px;         /* Small "Medium" size */
+            max-width: 80%;
+            border-radius: 20px;
+            border: 4px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin: 15px 0;
+        }
+
+        p {
+            font-size: 20px;
+            color: #444;
+            margin: 15px 0;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff4081;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #e91e63;
+            transform: scale(1.05);
+        }
+
+        /* --- SURPRISE VIDEO BOX --- */
+        #videoBox {
+            display: none; /* Hidden until button click */
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .surprise-vid {
+            width: 60%;           /* "Medium-Small" size */
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sparkle-bg"></div>
+
+    <div class="container">
+        <h1>𝐻𝑎𝑝𝑝𝑦 𝐵𝑖𝑟𝑡ℎ𝑑𝑎𝑦! 💖</h1>
+
+     <video class="intro-vid" autoplay loop muted playsinline>
+    <source src="intro.mp4" type="video/mp4">
+</video>
+        <p>Happy Birthday Savii 💖 Have the best day ever!</p>
+
+        <button onclick="playVideo()">Click for Surprise 🌈</button>
+
+        <div id="videoBox">
+            <video id="birthdayVideo" class="surprise-vid" controls>
+                <source src="birthdayyyyy.mp4" type="video/mp4">
+            </video>
+        </div>
+        <source src="intro_video.mp4" type="video/mp4">
+    </div>
+
+    <script>
+        function playVideo() {
+            document.getElementById("videoBox").style.display = "block";
+            document.getElementById("birthdayVideo").play();
+            // Optional: Smooth scroll to the video
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        // Create Sparkles
+        function createSparkles() {
+            const bg = document.getElementById("sparkle-bg");
+            for (let i = 0; i < 80; i++) {
+                let s = document.createElement("div");
+                s.classList.add("sparkle");
+                s.style.left = Math.random() * 100 + "vw";
+                s.style.animationDuration = (3 + Math.random() * 4) + "s";
+                s.style.animationDelay = Math.random() * 5 + "s";
+                bg.appendChild(s);
+            }
+        }
+
+        createSparkles();
+    </script>
+</body>
+</html>
